@@ -36,13 +36,16 @@ export const Info = styled.div`
     font-weight: 500;
     font-size: 20px;
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
+  }
+  div {
+    display: flex;
+    gap: 17px;
   }
 `
 export const Card = styled.div`
   z-index: 2;
   img {
     border-radius: 30px;
-    width: 230px;
   }
 `
