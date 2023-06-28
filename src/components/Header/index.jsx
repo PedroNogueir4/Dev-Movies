@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import Logo from '../../assets/logo.png'
@@ -5,9 +6,20 @@ import { Container, ButtonNav } from './styles'
 
 function Header() {
   const location = useLocation()
+  const [changeBackground, setChangeBackground] = useState(false)
+
+  window.onscroll = () => {
+    if (!changeBackground && pageYOffset > 120) {
+      setChangeBackground(true)
+    }
+    if (changeBackground && pageYOffset <= 120) {
+      setChangeBackground(false)
+    }
+  }
+
   return (
-    <Container>
-      <img src={Logo} style={{ width: 300 }} />
+    <Container changeBackground={changeBackground}>
+      <img src={Logo} />
       <div>
         <ButtonNav to="/" isactive={location.pathname === '/'}>
           Home
