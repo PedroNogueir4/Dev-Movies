@@ -47,5 +47,6 @@ export const Card = styled.div`
   z-index: 2;
   img {
     border-radius: 30px;
+    width: 300px;
   }
 `

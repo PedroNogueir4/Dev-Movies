@@ -22,5 +22,5 @@ export const ButtonNav = styled(Link)`
   font-size: 17px;
 
   padding-bottom: 5px;
-  border-bottom: ${(props) => (props.isActive ? '2.5px solid red' : 'none')};
+  border-bottom: ${(props) => (props.isactive ? '2.5px solid red' : 'none')};
 `

@@ -1,7 +1,7 @@
 import { ButtonStyle } from './styles'
 
-function Button({ children, mainButton }) {
-  return <ButtonStyle mainButton={mainButton}>{children}</ButtonStyle>
+function Button({ children, mainbutton }) {
+  return <ButtonStyle mainbutton={mainbutton}>{children}</ButtonStyle>
 }
 
 export default Button
