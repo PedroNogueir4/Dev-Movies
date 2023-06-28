@@ -12,5 +12,6 @@ export default createGlobalStyle`
 }
 body{
     background: black;
+    padding-bottom: 10px;
 }
 `

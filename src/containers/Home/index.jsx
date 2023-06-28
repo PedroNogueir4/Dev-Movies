@@ -4,18 +4,21 @@ import Button from '../../components/Button'
 import Caroulsel from '../../components/Carousel'
 import api from '../../services/api'
 import { getImage } from '../../utils/getImages'
+import { randomPopMovie } from '../../utils/popularMovie'
 import { Background, Info, Card, Container } from './styles'
 
 export function Home() {
   const [movie, setMovie] = useState()
-  const [topMovie, setTopMovie] = useState([])
+  const [topMovie, setTopMovie] = useState()
+  const [topSerie, setTopSerie] = useState()
+  const [artists, setArtists] = useState()
 
   useEffect(() => {
     async function loadMovies() {
       const {
         data: { results }
       } = await api.get('/movie/popular')
-      setMovie(results[3])
+      setMovie(results[randomPopMovie(0, 20)])
     }
 
     async function loadTopMovies() {
@@ -25,6 +28,23 @@ export function Home() {
       setTopMovie(results)
     }
 
+    async function loadTopSeries() {
+      const {
+        data: { results }
+      } = await api.get('/tv/top_rated')
+      setTopSerie(results)
+    }
+
+    async function loadArtists() {
+      const {
+        data: { results }
+      } = await api.get('/person/popular')
+      console.log(results)
+      setArtists(results)
+    }
+
+    loadArtists()
+    loadTopSeries()
     loadTopMovies()
     loadMovies()
   }, [])
@@ -49,6 +69,8 @@ export function Home() {
         </Background>
       )}
       {topMovie && <Caroulsel info={topMovie} title={'Top Filmes'} />}
+      {topSerie && <Caroulsel info={topSerie} title={'Top Séries'} />}
+      {artists && <Caroulsel info={artists} title={'Artistas'} />}
     </>
   )
 }
