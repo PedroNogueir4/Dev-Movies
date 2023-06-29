@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import Button from '../../components/Button'
 import Caroulsel from '../../components/Carousel'
+import Modal from '../../components/Modal'
 import api from '../../services/api'
 import { getImage } from '../../utils/getImages'
 import { randomPopMovie } from '../../utils/popularMovie'
@@ -12,12 +13,14 @@ export function Home() {
   const [topMovie, setTopMovie] = useState()
   const [topSerie, setTopSerie] = useState()
   const [artists, setArtists] = useState()
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     async function loadMovies() {
       const {
         data: { results }
       } = await api.get('/movie/popular')
+
       setMovie(results[randomPopMovie(0, 20)])
     }
 
@@ -39,7 +42,6 @@ export function Home() {
       const {
         data: { results }
       } = await api.get('/person/popular')
-      console.log(results)
       setArtists(results)
     }
 
@@ -53,13 +55,18 @@ export function Home() {
     <>
       {movie && (
         <Background img={getImage(movie.backdrop_path)}>
+          {showModal && (
+            <Modal movieId={movie.id} setShowModal={setShowModal} />
+          )}
           <Container>
             <Info>
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
               <div>
                 <Button mainbutton>Assista Agora</Button>
-                <Button>Assista o Trailer</Button>
+                <Button onClick={() => setShowModal(true)}>
+                  Assista o Trailer
+                </Button>
               </div>
             </Info>
             <Card>
