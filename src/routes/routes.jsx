@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { Home, Series, Movies } from '../containers'
+import { Home, Series, Movies, Detail } from '../containers'
 import DefaultLayout from '../layouts/DefaultLayout'
 
 function MyRoutes() {
@@ -10,6 +10,7 @@ function MyRoutes() {
         <Route exact path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/series" element={<Series />} />
+        <Route path="/detalhes/:id" element={<Detail />} />
       </Route>
     </Routes>
   )

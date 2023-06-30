@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Button from '../../components/Button'
 import Caroulsel from '../../components/Carousel'
 import Modal from '../../components/Modal'
-import api from '../../services/api'
+import {
+  getArtists,
+  getMovies,
+  getTopMovies,
+  getTopSeries
+} from '../../services/getAllData'
 import { getImage } from '../../utils/getImages'
-import { randomPopMovie } from '../../utils/popularMovie'
 import { Background, Info, Card, Container } from './styles'
 
 export function Home() {
+  const navigate = useNavigate()
   const [movie, setMovie] = useState()
   const [topMovie, setTopMovie] = useState()
   const [topSerie, setTopSerie] = useState()
@@ -16,39 +22,18 @@ export function Home() {
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    async function loadMovies() {
-      const {
-        data: { results }
-      } = await api.get('/movie/popular')
-
-      setMovie(results[randomPopMovie(0, 20)])
+    async function getAllData() {
+      Promise.all([getMovies(), getTopMovies(), getTopSeries(), getArtists()])
+        .then((result) => {
+          setMovie(result[0])
+          setTopMovie(result[1])
+          setTopSerie(result[2])
+          setArtists(result[3])
+        })
+        .catch((error) => console.error(error))
     }
 
-    async function loadTopMovies() {
-      const {
-        data: { results }
-      } = await api.get('/movie/top_rated')
-      setTopMovie(results)
-    }
-
-    async function loadTopSeries() {
-      const {
-        data: { results }
-      } = await api.get('/tv/top_rated')
-      setTopSerie(results)
-    }
-
-    async function loadArtists() {
-      const {
-        data: { results }
-      } = await api.get('/person/popular')
-      setArtists(results)
-    }
-
-    loadArtists()
-    loadTopSeries()
-    loadTopMovies()
-    loadMovies()
+    getAllData()
   }, [])
 
   return (
@@ -63,7 +48,12 @@ export function Home() {
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
               <div>
-                <Button mainbutton>Assista Agora</Button>
+                <Button
+                  mainbutton
+                  onClick={() => navigate(`/detalhes/${movie.id}`)}
+                >
+                  Assista Agora
+                </Button>
                 <Button onClick={() => setShowModal(true)}>
                   Assista o Trailer
                 </Button>
