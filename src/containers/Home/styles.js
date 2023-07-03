@@ -16,6 +16,16 @@ export const Background = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background-image: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+  }
 `
 export const Container = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
+import Caroulsel from '../../components/Carousel'
 import {
   getCredits,
   getDetails,
@@ -8,7 +9,14 @@ import {
   getVideos
 } from '../../services/getAllData'
 import { getImage } from '../../utils/getImages'
-import { Container, Background } from './styles'
+import {
+  Container,
+  Background,
+  ContainerInfo,
+  ContainerMain,
+  Genres,
+  CardMovie
+} from './styles'
 
 export function Detail() {
   const [videos, setVideos] = useState()
@@ -30,7 +38,7 @@ export function Detail() {
           setVideos(videos)
           setMovie(details)
           setSimilar(similar)
-          setCredits(credits)
+          setCredits(credits.cast)
         })
         .catch((error) => console.error(error))
     }
@@ -39,9 +47,27 @@ export function Detail() {
   }, [])
 
   return (
-    <>
-      {movie && <Background img={getImage(movie.backdrop_path)} />}
-      <Container>Detalhes</Container>
-    </>
+    <Container>
+      {movie && (
+        <>
+          <Background img={getImage(movie.backdrop_path)} />
+          <ContainerMain>
+            <CardMovie>
+              <img src={getImage(movie.poster_path)} />
+            </CardMovie>
+            <ContainerInfo>
+              <h1>{movie.title}</h1>
+              <Genres>
+                {movie.genres.map((genre) => {
+                  return <p key={genre.id}>{genre.name}</p>
+                })}
+              </Genres>
+              <p>{movie.overview}</p>
+              {credits && <Caroulsel info={credits} title={'Créditos'} />}
+            </ContainerInfo>
+          </ContainerMain>
+        </>
+      )}
+    </Container>
   )
 }
