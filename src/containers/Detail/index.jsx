@@ -46,7 +46,7 @@ export function Detail() {
     }
 
     getAllData()
-  }, [])
+  }, [id])
 
   return (
     <Container>
@@ -66,7 +66,11 @@ export function Detail() {
               </Genres>
               <p>{movie.overview}</p>
               {credits && (
-                <Caroulsel detailWidth info={credits} title={'Créditos'} />
+                <Caroulsel
+                  detailWidth
+                  info={credits.slice(0, 8)}
+                  title={'Créditos'}
+                />
               )}
             </ContainerInfo>
           </ContainerMain>
