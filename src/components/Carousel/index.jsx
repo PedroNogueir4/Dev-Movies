@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import CardItem from '../CardItem'
 import { Container } from './styles'
 
-function Caroulsel({ info, title }) {
+function Caroulsel({ info, title, detailWidth }) {
   return (
     <Container>
       <h2>{title}</h2>
@@ -16,7 +16,7 @@ function Caroulsel({ info, title }) {
         {info.map((movie, index) => {
           return (
             <SwiperSlide key={index}>
-              <CardItem item={movie} />
+              <CardItem detailWidth={detailWidth} item={movie} />
             </SwiperSlide>
           )
         })}

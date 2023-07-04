@@ -8,7 +8,7 @@ export const Container = styled.div`
 `
 
 export const Image = styled.img`
-  width: 200px;
-  border-radius: 15px;
+  width: ${(props) => (props.detailWidth ? '85px' : '200px')};
+  border-radius: ${(props) => (props.detailWidth ? 'none' : '15px')};
   margin-bottom: 10px;
 `

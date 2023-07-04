@@ -9,13 +9,15 @@ import {
   getVideos
 } from '../../services/getAllData'
 import { getImage } from '../../utils/getImages'
+import { getVideosYT } from '../../utils/getVideoYT'
 import {
   Container,
   Background,
   ContainerInfo,
   ContainerMain,
   Genres,
-  CardMovie
+  CardMovie,
+  ContainerVideos
 } from './styles'
 
 export function Detail() {
@@ -63,11 +65,28 @@ export function Detail() {
                 })}
               </Genres>
               <p>{movie.overview}</p>
-              {credits && <Caroulsel info={credits} title={'Créditos'} />}
+              {credits && (
+                <Caroulsel detailWidth info={credits} title={'Créditos'} />
+              )}
             </ContainerInfo>
           </ContainerMain>
         </>
       )}
+      <ContainerVideos>
+        {videos &&
+          videos.map((video) => (
+            <div key={video.id}>
+              <p>{video.name}</p>
+              <iframe
+                src={getVideosYT(video.key)}
+                title="Youtube Video Player"
+                height="350px"
+                width="55%"
+              ></iframe>
+            </div>
+          ))}
+      </ContainerVideos>
+      {similar && <Caroulsel info={similar} title={'Similares'} />}
     </Container>
   )
 }

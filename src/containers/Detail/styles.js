@@ -12,6 +12,7 @@ to{
 export const Container = styled.div`
   color: white;
   font-weight: 700;
+  padding-bottom: 15px;
 `
 export const Background = styled.div`
   background-image: url(${(props) => props.img});
@@ -72,7 +73,25 @@ export const CardMovie = styled.div`
   z-index: 2;
   img {
     border-radius: 30px;
-    width: 300px;
+    width: 350px;
     animation: ${scale} 0.5s linear;
+  }
+`
+export const ContainerVideos = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 100px;
+  margin-bottom: 80px;
+
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  iframe {
+    border: none;
   }
 `
