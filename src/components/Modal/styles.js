@@ -22,6 +22,11 @@ export const Container = styled.div`
   position: fixed;
   max-width: 1200px;
 
+  @media (max-width: 780px) {
+    width: 90%;
+    height: 40%;
+  }
+
   iframe {
     border: none;
     height: 100%;
