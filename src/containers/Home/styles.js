@@ -32,25 +32,54 @@ export const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   max-width: 1100px;
+  @media (max-width: 780px) {
+    flex-direction: column-reverse;
+    overflow: hidden;
+  }
+  @media (max-width: 450px) {
+    gap: 50px;
+  }
 `
 export const Info = styled.div`
   z-index: 2;
   color: #ffffff;
   width: 50%;
+  @media (max-width: 450px) {
+    width: 80%;
+  }
 
   h1 {
     font-weight: 700;
     font-size: 4rem;
+    @media (max-width: 780px) {
+      font-size: 2rem;
+    }
+    @media (max-width: 450px) {
+      font-size: 1.7rem;
+    }
   }
   p {
     font-weight: 500;
     font-size: 20px;
     margin-top: 30px;
     margin-bottom: 26px;
+    @media (max-width: 780px) {
+      font-size: 18px;
+    }
+    @media (max-width: 600px) {
+      font-size: 15px;
+    }
+    @media (max-width: 450px) {
+      display: none;
+    }
   }
   div {
     display: flex;
     gap: 17px;
+    @media (max-width: 450px) {
+      gap: 30px;
+      margin-top: 50px;
+    }
   }
 `
 export const Card = styled.div`
@@ -58,5 +87,11 @@ export const Card = styled.div`
   img {
     border-radius: 30px;
     width: 300px;
+    @media (max-width: 780px) {
+      width: 200px;
+    }
+    @media (max-width: 400px) {
+      width: 170px;
+    }
   }
 `

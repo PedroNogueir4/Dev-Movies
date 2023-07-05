@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 export const ButtonStyle = styled.button`
   width: 200px;
-  height: 35px;
+  height: 38px;
   background: ${(props) => (props.mainbutton ? '#ff0000' : 'transparent')};
   color: white;
   font-weight: 700;

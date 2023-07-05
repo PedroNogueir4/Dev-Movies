@@ -12,18 +12,29 @@ export const Container = styled.div`
   width: 100vw;
   min-height: 50px;
 
+  @media (max-width: 450px) {
+    gap: 20px;
+    padding-right: 30px;
+  }
+
   background-color: ${(props) =>
     props.changeBackground ? '#000' : 'transparent'};
   transition: background-color 0.6s ease-in-out;
 
   img {
-    width: 25%; // +- 70% responsivo
+    width: 25%;
+    @media (max-width: 700px) {
+      width: 45%;
+    }
   }
 
   div {
     display: flex;
-    gap: 40px; //15px responsivo
+    gap: 40px;
     align-items: center;
+    @media (max-width: 700px) {
+      gap: 20px;
+    }
   }
 `
 export const ButtonNav = styled(Link)`
@@ -33,9 +44,13 @@ export const ButtonNav = styled(Link)`
   cursor: pointer;
   position: relative;
   font-weight: 700;
-  font-size: 17px; // 10px responsivo
+  font-size: 17px;
 
   padding-bottom: 5px;
+
+  @media (max-width: 450px) {
+    font-size: 15px;
+  }
 
   &::after {
     content: '';
