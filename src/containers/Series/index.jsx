@@ -1,7 +1,9 @@
+import { Container } from './styles'
+
 export function Series() {
   return (
-    <div>
-      <h1>Series</h1>
-    </div>
+    <Container>
+      <h1>Em Breve !</h1>
+    </Container>
   )
 }

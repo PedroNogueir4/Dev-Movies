@@ -1,7 +1,9 @@
+import { Container } from './styles'
+
 export function Movies() {
   return (
-    <div>
-      <h1>Movies</h1>
-    </div>
+    <Container>
+      <h1>Em Breve!</h1>
+    </Container>
   )
 }
