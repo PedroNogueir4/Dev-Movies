@@ -53,7 +53,7 @@ export const Info = styled.div`
 
   h1 {
     font-weight: 700;
-    font-size: 4rem;
+    font-size: 3.5rem;
     @media (max-width: 780px) {
       font-size: 2rem;
     }
@@ -63,7 +63,7 @@ export const Info = styled.div`
   }
   p {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 30px;
     margin-bottom: 26px;
     @media (max-width: 780px) {
